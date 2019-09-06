@@ -25,6 +25,8 @@ Currently, Blizzard seems too focused on Battle.net as a platform (zzz) to imple
 
 - [x] [pypresence](https://github.com/qwertyquerty/pypresence) - install via pip using `pip install pypresence`
 
+- [x] [requests] - install via pip using `pip install requests`
+
 - [ ] A functioning brain
 
 - [x] Discord ["Show game activity" enabled](https://i.imgur.com/VBAU5Cg.png)
@@ -36,7 +38,7 @@ Currently, Blizzard seems too focused on Battle.net as a platform (zzz) to imple
 1. Clone the repo with `git clone https://github.com/maxicc/owrpc.git` or download the ZIP version from the top of this page.
 * *(sidenote: please do not change anything in the config file - you don't need your own Discord client ID or anything!)*
 2. Open up a Terminal window in the directory you cloned or downloaded this repo to.
-3. Run `pip install pypresence` if you don't already have it installed.
+3. Run `pip install pypresence` and `pip install requests` if you don't already have it installed.
 4. Make sure Discord is running, then run `python owrpc.py`. You should be greeted by the program!
 5. That's it, you're done! 🎉 Now, run `!help` to see what commands are available. Or just, you know, look below.
 6. *EXTRA STEP FOR WINDOWS USERS!* When testing this program on Windows, I noticed that the Windows Terminal doesn't, by default, display ANSI colours, instead it will just show the escape code (which makes the console display really ugly)! To get around this, create a file called `.nocol` in the same directory as `owrpc.py` - this will disable the colours. You could also use an alternate terminal - I know that [Terminus](https://eugeny.github.io/terminus/) works fine, as may others. Conversely, other platforms that struggle to display ANSI colours can disable them using the `.nocol` file.
