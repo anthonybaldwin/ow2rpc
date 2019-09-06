@@ -25,7 +25,7 @@ Currently, Blizzard seems too focused on Battle.net as a platform (zzz) to imple
 
 - [x] [pypresence](https://github.com/qwertyquerty/pypresence) - install via pip using `pip install pypresence`
 
-- [x] [requests] - install via pip using `pip install requests`
+- [x] [requests](https://2.python-requests.org/en/master/) - install via pip using `pip install requests`
 
 - [ ] A functioning brain
 
