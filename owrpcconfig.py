@@ -8,7 +8,7 @@ class configs():
     """
 
     client = 583356928688783369
-    ver = "1.1.1"
+    ver = "1.1.2"
 
 class maps():
     """

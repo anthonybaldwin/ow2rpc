@@ -8,6 +8,7 @@ try:
     import sys
     import random
     import os
+    import platform
 
     try:
         # Importing custom project-specific modules
@@ -26,12 +27,18 @@ try:
         print(str(e))
         sys.exit(1)
 
+    os.chdir(os.path.dirname(sys.argv[0]))
+
     # If there is a file in this directory called ".nocol"
-    if os.path.exists(".nocol") or os.path.exists(".NOCOL"):
+    if os.path.isfile(".nocol") or os.path.isfile(".NOCOL"):
         # Import a different version of the prefixes module that removes the ANSI colours
         from mansi import nocolours as c
     else:
         # Import the normal colours module
+        if platform.platform() == "Windows":
+            print("[!] It looks like you're using Windows, but you didn't disable ANSI colours!")
+            print("[!] If the text below looks weird, create a file called .NOCOL in the same directory as owrpc.py to stop this.")
+            print("[!] If it doesn't look weird to you, congratulations on not using the Windows terminal.")
         from mansi import colours as c
 
     # Initialise the Discord Presence using pypresence then connect to Discord
@@ -98,7 +105,7 @@ try:
         else:
             print(c.success + "You're up-to-date! Thanks for using the latest version.")
         print(c.info + "Need help? Want a new feature? Join the Discord at discord.gg/keErGbZ")
-        print(c.info + "or open an issue on the GitHub page at git.io/owrpc!")
+        print(c.info + "...or open an issue on the GitHub page at git.io/owrpc!")
         print(c.blank + random.choice(owquotes))
 
     def setupGame():
