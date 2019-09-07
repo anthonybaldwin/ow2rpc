@@ -7,8 +7,6 @@ try:
     import time
     import sys
     import random
-    import os
-    import platform
 
     try:
         # Importing custom project-specific modules
@@ -27,18 +25,12 @@ try:
         print(str(e))
         sys.exit(1)
 
-    os.chdir(os.path.dirname(sys.argv[0]))
-
-    # If there is a file in this directory called ".nocol"
-    if os.path.isfile(".nocol") or os.path.isfile(".NOCOL"):
-        # Import a different version of the prefixes module that removes the ANSI colours
+    try:
+        # Try to open .nocol, if we can't then it doesn't exist so we can import normal colours
+        f = open(".nocol","r")
+        f.close()
         from mansi import nocolours as c
-    else:
-        # Import the normal colours module
-        if platform.platform() == "Windows":
-            print("[!] It looks like you're using Windows, but you didn't disable ANSI colours!")
-            print("[!] If the text below looks weird, create a file called .NOCOL in the same directory as owrpc.py to stop this.")
-            print("[!] If it doesn't look weird to you, congratulations on not using the Windows terminal.")
+    except:
         from mansi import colours as c
 
     # Initialise the Discord Presence using pypresence then connect to Discord
