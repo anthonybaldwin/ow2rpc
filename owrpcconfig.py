@@ -8,7 +8,7 @@ class configs():
     """
 
     client = 583356928688783369
-    ver = "1.0.3"
+    ver = "1.1.0"
 
 class maps():
     """
@@ -60,5 +60,5 @@ class maps():
         "chateau": ["Château Guillard","Arcade","chateau"],
         "petra": ["Petra","Arcade","petra"],
         "ayutthaya": ["Ayutthaya","Arcade","ayutthaya"],
-        "seasonal": ["Overwatch Event","Seasonal","overwatch"]
+        "seasonal": ["Seasonal Event","Seasonal","overwatch"]
     }

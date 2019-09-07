@@ -1,13 +1,15 @@
 # owrpc
 
-### You might also like [splat2rpc](https://git.io/splat2) - a Discord Rich Presence client for Nintendo's Splatoon 2!
+### ~~You might also like [splat2rpc](https://git.io/splat2) - a Discord Rich Presence client for Nintendo's Splatoon 2!~~
 
-![version](https://img.shields.io/badge/version-1.0.3-yellow.svg)
+![version](https://img.shields.io/badge/version-1.1.0-yellow.svg)
 ![python-versions](https://img.shields.io/badge/python-3.5%20|%203.6%20|%203.7-critical.svg)
 ![GPL-license](https://img.shields.io/badge/license-GPLv3-green.svg)
 [![pypresence](https://img.shields.io/badge/using-pypresence-00bb88.svg?logo=discord&logoWidth=20)](https://github.com/qwertyquerty/pypresence)
 
-![owrpc Promo Hero](https://i.imgur.com/FfKMwXx.png)
+[![owrpc Promo Hero](https://i.imgur.com/FfKMwXx.png)](https://discord.gg/keErGbZ)
+
+[![Help Banner](https://i.imgur.com/G3ca1xE.png)](https://discord.gg/keErGbZ)
 
 ###### Overwatch + Discord Rich Presence = <3
 

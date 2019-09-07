@@ -20,12 +20,14 @@ try:
     # If imports didn't work...
     except Exception as e:
         # Warn the user that the modules can't be imported then exit with error code 1
-        print("[!] Error! Couldn't import a module. Did you download the dependencies?")
-        print("[!] Check https://git.io/owrpc and make sure, then try running again.")
+        print("[!] Error! Couldn't import a module. Did you download the dependencies (requests and pypresence)?")
+        print("[!] Check the instructions at https://git.io/owrpc and make sure, then try running again.")
+        print("[!] If you need more help, join the Discord at https://discord.gg/keErGbZ and show this to maxic:")
+        print(str(e))
         sys.exit(1)
 
     # If there is a file in this directory called ".nocol"
-    if os.path.exists(".nocol") == True:
+    if os.path.exists(".nocol") or os.path.exists(".NOCOL"):
         # Import a different version of the prefixes module that removes the ANSI colours
         from mansi import nocolours as c
     else:
@@ -45,11 +47,11 @@ try:
         currmode = ''
         presets = {
             "example":["details","state","overwatch","large_text","overwatch-dark","small_text"],
-            "inmenus":["In Menus",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
-            "inqueue":["In Queue",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
-            "inqueue-comp":["Competitive: In Queue",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
-            "inqueue-quick":["Quick Play: In Queue",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
-            "inqueue-arcade":["Arcade: In Queue",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
+            "inmenus":["In Menus",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
+            "inqueue":["In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
+            "inqueue-comp":["Competitive: In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
+            "inqueue-quick":["Quick Play: In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
+            "inqueue-arcade":["Arcade: In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
             "devmode":["Overwatch RPC Client","I'm being programmed!","maxic","Created by maxic#9999","overwatch","Under development!"]
         }
 
@@ -81,10 +83,10 @@ try:
         status.devmode = not status.devmode
 
         if status.devmode == True:
-            print(c.success + "Enabled development mode.")
+            print(c.success + "Enabled development mode. Be afraid!")
             clearPresence()
         else:
-            print(c.success + "Disabled development mode.")
+            print(c.success + "Disabled development mode... you can relax now.")
             clearPresence()
 
     def showGreeting():
@@ -92,9 +94,11 @@ try:
         onlver = requests.get("https://maxicc.github.io/owrpc/VERSION.txt").text.rstrip()
         if x.ver != onlver:
             print(c.warn + "You're out-of-date! The latest version on GitHub is " + str(onlver) + " and you're on " + x.ver + ".")
+            print(c.warn + "Time to update! Clone the git repo again or redownload the files from https://git.io/owrpc.")
         else:
             print(c.success + "You're up-to-date! Thanks for using the latest version.")
-        print(c.info + "Questions? Comments? Feature requests? Head to https://git.io/owrpc!")
+        print(c.info + "Need help? Want a new feature? Join the Discord at https://discord.gg/keErGbZ")
+        print(c.info + "or open an issue on the GitHub page at https://git.io/owrpc!")
         print(c.blank + random.choice(owquotes))
 
     def setupGame():
@@ -118,7 +122,8 @@ try:
         elif mode[2] == "any":
             maps = buildList(m.standard) + ", " + buildList(m.arcade)
         else:
-            print(c.fail + "Something unexpected went wrong. Please report this at https://git.io/owrpc and say you hit point 1.")
+            print(c.fail + "Something unexpected went wrong! Please report this at https://git.io/owrpc or https://discord.gg/keErGbZ and say you hit point 1.")
+            print(c.info + "If you try and do whatever you were trying to do again, it should work. Hopefully. Sorry about that.")
 
         print(c.info + "What map are you playing on?")
         print(c.info + "Your options are: " + maps)
@@ -141,7 +146,8 @@ try:
                 map[3] = m.arcade[user][2] # Image key
                 print(str(map))
             else:
-                print(c.fail + "Something unexpected went wrong. Please report this at https://git.io/owrpc and say you hit point 2.")
+                print(c.fail + "Something unexpected went wrong! Please report this at https://git.io/owrpc or https://discord.gg/keErGbZ and say you hit point 2.")
+                print(c.info + "If you try and do whatever you were trying to do again, it should work. Hopefully. Sorry about that.")
 
         if mode[0] == "competitive":
             print(c.info + "What is your skill rating (SR)?")
@@ -149,23 +155,29 @@ try:
             sr = [0,""]
             while sr == [0,""]:
                 try:
-                    user = int(user)
-                    if user < 1 or user > 5000:
-                        raise ValueError
-                    elif user < 1500:
+                    if user == "<500":
                         sr = [user,"bronze"]
-                    elif user < 2000:
-                        sr = [user,"silver"]
-                    elif user < 2500:
-                        sr = [user,"gold"]
-                    elif user < 3000:
-                        sr = [user,"platinum"]
-                    elif user < 3500:
-                        sr = [user,"diamond"]
-                    elif user < 4000:
-                        sr = [user,"masters"]
                     else:
-                        sr = [user,"grandmaster"]
+                        user = int(user)
+                        if user < 1 or user > 5000:
+                            raise ValueError
+                        elif user < 1500:
+                            if user < 500:
+                                sr = ["<500","bronze"]
+                            else:
+                                sr = [user,"bronze"]
+                        elif user < 2000:
+                            sr = [user,"silver"]
+                        elif user < 2500:
+                            sr = [user,"gold"]
+                        elif user < 3000:
+                            sr = [user,"platinum"]
+                        elif user < 3500:
+                            sr = [user,"diamond"]
+                        elif user < 4000:
+                            sr = [user,"masters"]
+                        else:
+                            sr = [user,"grandmaster"]
                 except Exception as e:
                     print(c.fail + "The SR you entered is invalid, so I'm going to set your SR to Bronze. You probably belong there anyway.")
                     sr = [-1,"bronze"]
@@ -173,7 +185,7 @@ try:
 
                 setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=sr[1],small_text=str(sr[0]) + ' SR')
         else:
-            setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image="maxic",small_text="Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊")
+            setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image="maxic",small_text="owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc")
 
     def setPresence(preset,details='',state='',large_image='',large_text='',small_image='',small_text=''):
         """
@@ -244,7 +256,7 @@ try:
 
         setPresence(None,details=options["details"],state=options["state"],large_image=options["large_image"],large_text=options["large_text"],small_image=options["small_image"],small_text=options["small_text"])
 
-    owquotes = ["Cheers, love! The cavalry's here!","¡Apagando las luces!","Old soldiers are hard to kill.","Clear skies, full hearts, can't lose.","Initiating the hack.","Your guardian angel.","It's in the refrigerator.","Look out world, Tracer's here!","Nerf this!","Fire in the hole!","Die, die, die!","Justice rains from above!","I will be your shield!","All systems buzzing!"]
+    owquotes = ["Cheers, love! The cavalry's here!","¡Apagando las luces!","Look out world, Tracer's here!","Nerf this!","Fire in the hole!","Die, die, die!","Justice rains from above!","I will be your shield!","All systems buzzing!","What is that melody?","Your guardian angel.","Do you even lift?","Gotcha something!","This... is my will."]
 
     showGreeting()
     setPresence("inmenus_silent")
@@ -304,9 +316,9 @@ try:
             clearPresence()
 
         else:
-            print(c.fail + "Couldn't find that command! Do !help if you need a refresher, or check out the documentation at https://git.io/owrpc.")
+            print(c.fail + "Couldn't find that command! Do !help if you need a refresher, or check out the documentation at https://git.io/owrpc. Need help? Ask at https://discord.gg/keErGbZ.")
         pass
 except KeyboardInterrupt:
     print()
-    print(c.success + "Exiting...")
-    sys.exit(1)
+    print(c.fail + "Got your CTRL+C! Exiting...")
+    sys.exit(0)
