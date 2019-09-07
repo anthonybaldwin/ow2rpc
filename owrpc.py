@@ -21,8 +21,8 @@ try:
     except Exception as e:
         # Warn the user that the modules can't be imported then exit with error code 1
         print("[!] Error! Couldn't import a module. Did you download the dependencies (requests and pypresence)?")
-        print("[!] Check the instructions at https://git.io/owrpc and make sure, then try running again.")
-        print("[!] If you need more help, join the Discord at https://discord.gg/keErGbZ and show this to maxic:")
+        print("[!] Check the instructions at git.io/owrpc and make sure, then try running again.")
+        print("[!] If you need more help, join the Discord at discord.gg/keErGbZ and show this to maxic:")
         print(str(e))
         sys.exit(1)
 
@@ -47,11 +47,11 @@ try:
         currmode = ''
         presets = {
             "example":["details","state","overwatch","large_text","overwatch-dark","small_text"],
-            "inmenus":["In Menus",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
-            "inqueue":["In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
-            "inqueue-comp":["Competitive: In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
-            "inqueue-quick":["Quick Play: In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
-            "inqueue-arcade":["Arcade: In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc",None,None],
+            "inmenus":["In Menus",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! git.io/owrpc",None,None],
+            "inqueue":["In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! git.io/owrpc",None,None],
+            "inqueue-comp":["Competitive: In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! git.io/owrpc",None,None],
+            "inqueue-quick":["Quick Play: In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! git.io/owrpc",None,None],
+            "inqueue-arcade":["Arcade: In Queue",None,"overwatch","owrpc v" + x.ver + " by maxic#9999! git.io/owrpc",None,None],
             "devmode":["Overwatch RPC Client","I'm being programmed!","maxic","Created by maxic#9999","overwatch","Under development!"]
         }
 
@@ -94,11 +94,11 @@ try:
         onlver = requests.get("https://maxicc.github.io/owrpc/VERSION.txt").text.rstrip()
         if x.ver != onlver:
             print(c.warn + "You're out-of-date! The latest version on GitHub is " + str(onlver) + " and you're on " + x.ver + ".")
-            print(c.warn + "Time to update! Clone the git repo again or redownload the files from https://git.io/owrpc.")
+            print(c.warn + "Time to update! Clone the git repo again or redownload the files from git.io/owrpc.")
         else:
             print(c.success + "You're up-to-date! Thanks for using the latest version.")
-        print(c.info + "Need help? Want a new feature? Join the Discord at https://discord.gg/keErGbZ")
-        print(c.info + "or open an issue on the GitHub page at https://git.io/owrpc!")
+        print(c.info + "Need help? Want a new feature? Join the Discord at discord.gg/keErGbZ")
+        print(c.info + "or open an issue on the GitHub page at git.io/owrpc!")
         print(c.blank + random.choice(owquotes))
 
     def setupGame():
@@ -122,7 +122,7 @@ try:
         elif mode[2] == "any":
             maps = buildList(m.standard) + ", " + buildList(m.arcade)
         else:
-            print(c.fail + "Something unexpected went wrong! Please report this at https://git.io/owrpc or https://discord.gg/keErGbZ and say you hit point 1.")
+            print(c.fail + "Something unexpected went wrong! Please report this at git.io/owrpc or discord.gg/keErGbZ and say you hit point 1.")
             print(c.info + "If you try and do whatever you were trying to do again, it should work. Hopefully. Sorry about that.")
 
         print(c.info + "What map are you playing on?")
@@ -146,7 +146,7 @@ try:
                 map[3] = m.arcade[user][2] # Image key
                 print(str(map))
             else:
-                print(c.fail + "Something unexpected went wrong! Please report this at https://git.io/owrpc or https://discord.gg/keErGbZ and say you hit point 2.")
+                print(c.fail + "Something unexpected went wrong! Please report this at git.io/owrpc or discord.gg/keErGbZ and say you hit point 2.")
                 print(c.info + "If you try and do whatever you were trying to do again, it should work. Hopefully. Sorry about that.")
 
         if mode[0] == "competitive":
@@ -185,7 +185,7 @@ try:
 
                 setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=sr[1],small_text=str(sr[0]) + ' SR')
         else:
-            setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image="maxic",small_text="owrpc v" + x.ver + " by maxic#9999! https://git.io/owrpc")
+            setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image="maxic",small_text="owrpc v" + x.ver + " by maxic#9999! git.io/owrpc")
 
     def setPresence(preset,details='',state='',large_image='',large_text='',small_image='',small_text=''):
         """
@@ -316,7 +316,7 @@ try:
             clearPresence()
 
         else:
-            print(c.fail + "Couldn't find that command! Do !help if you need a refresher, or check out the documentation at https://git.io/owrpc. Need help? Ask at https://discord.gg/keErGbZ.")
+            print(c.fail + "Couldn't find that command! Do !help if you need a refresher, or check out the documentation at git.io/owrpc. Need help? Ask at discord.gg/keErGbZ.")
         pass
 except KeyboardInterrupt:
     print()
