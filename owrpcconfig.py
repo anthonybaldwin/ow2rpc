@@ -7,7 +7,7 @@ class configs():
     Should not be changed by users.
     """
 
-    client = 583356928688783369
+    client = 622499547507326977
     ver = "1.1.3"
 
 class maps():
@@ -61,4 +61,10 @@ class maps():
         "petra": ["Petra","Arcade","petra"],
         "ayutthaya": ["Ayutthaya","Arcade","ayutthaya"],
         "seasonal": ["Seasonal Event","Seasonal","overwatch"]
+    }
+
+    roles = {
+        "tank": ["Tank","tank"],
+        "heal": ["Support","heal"],
+        "dps": ["DPS","dps"],
     }

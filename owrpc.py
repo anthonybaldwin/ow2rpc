@@ -184,7 +184,23 @@ try:
 
                 setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=sr[1],small_text=str(sr[0]) + ' SR')
         else:
-            setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image="maxic",small_text="owrpc v" + x.ver + " by maxic#9999! git.io/owrpc")
+            if mode[2] == "standard" :
+                roles = buildList(m.roles)
+                print(c.info + "What is your role?")
+                print(c.info + "Your options are: " + roles)
+                user = input(c.ask)
+                role = ["",""]
+                while role == ["",""] :
+                    if user == "tank" or "heal" or "dps" :
+                        role[0] = m.roles[user][0] # Role name
+                        role[1] = m.roles[user][1] # Image key
+                    else:
+                        print(c.fail + "Something unexpected went wrong! Please report this at git.io/owrpc or discord.gg/keErGbZ and say you hit point 3.")
+                        print(c.info + "If you try and do whatever you were trying to do again, it should work. Hopefully. Sorry about that.")
+
+                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=role[1],small_text='Playing as ' + role[0])
+            else:
+                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=None,small_text=None)
 
     def setPresence(preset,details='',state='',large_image='',large_text='',small_image='',small_text=''):
         """
