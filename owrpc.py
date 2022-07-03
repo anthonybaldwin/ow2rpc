@@ -1,5 +1,5 @@
 # owrpc.py | Overwatch RPC Client
-# https://www.github.com/maxicc/owrpc
+# Original author: https://www.github.com/maxicc/owrpc (maxic#9999)
 try:
     ### - IMPORTS AND MAIN SETUP - ###
 
@@ -21,7 +21,6 @@ try:
     except Exception as e:
         # Warn the user that the modules can't be imported then exit with error code 1
         print("[!] Error! Couldn't import a module. Did you download the dependencies?")
-        print("[!] Check https://git.io/owrpc and make sure, then try running again.")
         sys.exit(1)
 
     # If there is a file in this directory called ".nocol"
@@ -35,22 +34,41 @@ try:
     # Initialise the Discord Presence using pypresence then connect to Discord
     dp = Presence(x.client)
     dp.connect()
+    
+    # Image URLs in favor of dealing with assets
+    dark = True
+    if dark:
+        largeImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=1024&mode=max&otf=y&quality=100&format=jpg&bgcolor=343e48"
+    else:
+        largeImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_LTBKGD.png?w=1024&mode=max&otf=y&quality=100&format=jpg&bgcolor=white"
+
+    smallImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=512&mode=max&otf=y&quality=100&format=jpg&bgcolor=343e48"
+
+    # Rank images (Rank tiers coming soon?)
+    bronze = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-BronzeTier.png"
+    silver = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-SilverTier.png"
+    gold = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-GoldTier.png"
+    platinum = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png"
+    diamond = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-DiamondTier.png"
+    masters = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-MasterTier.png"
+    grandmaster = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-GrandmasterTier.png"
+
+    largeImageText = "Beta"
 
     # Define the status class
-
     class status():
         ingame = 0
         devmode = False
         currmap = ''
         currmode = ''
         presets = {
-            "example":["details","state","overwatch","large_text","overwatch-dark","small_text"],
-            "inmenus":["In Menus",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
-            "inqueue":["In Queue",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
-            "inqueue-comp":["Competitive: In Queue",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
-            "inqueue-quick":["Quick Play: In Queue",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
-            "inqueue-arcade":["Arcade: In Queue",None,"overwatch","Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊",None,None],
-            "devmode":["Overwatch RPC Client","I'm being programmed!","maxic","Created by maxic#9999","overwatch","Under development!"]
+            "example":["details","state",largeImage,"large_text",smallImage,"small_text"],
+            "inmenus":["In Menus",None,largeImage,largeImageText,None,None],
+            "inqueue":["In Queue",None,largeImage,largeImageText,None,None],
+            "inqueue-comp":["Competitive: In Queue",None,largeImage,largeImageText,None,None],
+            "inqueue-quick":["Quick Play: In Queue",None,largeImage,largeImageText,None,None],
+            "inqueue-arcade":["Arcade: In Queue",None,largeImage,largeImageText,None,None],
+            "devmode":["ow2rpc","Testing!",largeImage,"Created by maxic#9999",bronze,"Small image text!"]
         }
 
     ### - DEFINE FUNCTIONS - ###
@@ -88,13 +106,13 @@ try:
             clearPresence()
 
     def showGreeting():
-        print(c.smile + "Overwatch RPC Client v" + x.ver + " by github.com/maxicc (maxic#9999)")
-        onlver = requests.get("https://maxicc.github.io/owrpc/VERSION.txt").text.rstrip()
+        print(c.smile + "Overwatch RPC Client v" + x.ver)
+        onlver = requests.get("https://raw.githubusercontent.com/anthonybaldwin/ow2rpc/master/docs/VERSION.txt").text.rstrip()
         if x.ver != onlver:
             print(c.warn + "You're out-of-date! The latest version on GitHub is " + str(onlver) + " and you're on " + x.ver + ".")
         else:
             print(c.success + "You're up-to-date! Thanks for using the latest version.")
-        print(c.info + "Questions? Comments? Feature requests? Head to https://git.io/owrpc!")
+        #print(c.info + "Questions? Comments? Feature requests? Head to https://git.io/owrpc!")
         print(c.blank + random.choice(owquotes))
 
     def setupGame():
@@ -118,7 +136,7 @@ try:
         elif mode[2] == "any":
             maps = buildList(m.standard) + ", " + buildList(m.arcade)
         else:
-            print(c.fail + "Something unexpected went wrong. Please report this at https://git.io/owrpc and say you hit point 1.")
+            print(c.fail + "Something unexpected went wrong. Please report this and say you hit point 1.")
 
         print(c.info + "What map are you playing on?")
         print(c.info + "Your options are: " + maps)
@@ -141,7 +159,7 @@ try:
                 map[3] = m.arcade[user][2] # Image key
                 print(str(map))
             else:
-                print(c.fail + "Something unexpected went wrong. Please report this at https://git.io/owrpc and say you hit point 2.")
+                print(c.fail + "Something unexpected went wrong. Please report this and say you hit point 2.")
 
         if mode[0] == "competitive":
             print(c.info + "What is your skill rating (SR)?")
@@ -153,27 +171,27 @@ try:
                     if user < 1 or user > 5000:
                         raise ValueError
                     elif user < 1500:
-                        sr = [user,"bronze"]
+                        sr = [user,bronze]
                     elif user < 2000:
-                        sr = [user,"silver"]
+                        sr = [user, silver]
                     elif user < 2500:
-                        sr = [user,"gold"]
+                        sr = [user,gold]
                     elif user < 3000:
-                        sr = [user,"platinum"]
+                        sr = [user,platinum]
                     elif user < 3500:
-                        sr = [user,"diamond"]
+                        sr = [user,diamond]
                     elif user < 4000:
-                        sr = [user,"masters"]
+                        sr = [user,masters]
                     else:
-                        sr = [user,"grandmaster"]
+                        sr = [user,grandmaster]
                 except Exception as e:
                     print(c.fail + "The SR you entered is invalid, so I'm going to set your SR to Bronze. You probably belong there anyway.")
-                    sr = [-1,"bronze"]
+                    sr = [-1,bronze]
                     print(str(e))
 
                 setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=sr[1],small_text=str(sr[0]) + ' SR')
         else:
-            setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image="maxic",small_text="Running OWRPC v" + x.ver + " by maxic#9999! Download it at https://git.io/owrpc 😊")
+            setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=smallImage,small_text=largeImageText)
 
     def setPresence(preset,details='',state='',large_image='',large_text='',small_image='',small_text=''):
         """
@@ -240,7 +258,7 @@ try:
                 options[option] = None
 
         if options["large_image"] == None:
-            options["large_image"] = "overwatch"
+            options["large_image"] = largeImage
 
         setPresence(None,details=options["details"],state=options["state"],large_image=options["large_image"],large_text=options["large_text"],small_image=options["small_image"],small_text=options["small_text"])
 
@@ -271,16 +289,16 @@ try:
             print(c.info + "!queue [a/c/q] - Set your presence to In Queue for [a]rcade, [c]ompetitive or [q]uickplay.")
             print(c.info + "!clear - Remove your presence from Discord.")
 
-        elif command.startswith("!quit"):
+        elif command.startswith("!quit") or command.startswith("!exit"):
             sys.exit(0)
 
         elif command.startswith("!game"):
-            setupGame()
+            setupGame() #TODO: !game [mode] [map]
 
         elif command.startswith("!custom"):
             setupCustom()
 
-        elif command.startswith("!menus"):
+        elif command.startswith("!menu"):
             setPresence("inmenus")
 
         elif command.startswith("!queue"):
@@ -304,7 +322,7 @@ try:
             clearPresence()
 
         else:
-            print(c.fail + "Couldn't find that command! Do !help if you need a refresher, or check out the documentation at https://git.io/owrpc.")
+            print(c.fail + "Couldn't find that command! Do !help if you need a refresher.")
         pass
 except KeyboardInterrupt:
     print()
