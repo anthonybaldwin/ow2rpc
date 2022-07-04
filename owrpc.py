@@ -283,7 +283,7 @@ try:
 
         setPresence(None,details=options["details"],state=options["state"],large_image=options["large_image"],large_text=options["large_text"],small_image=options["small_image"],small_text=options["small_text"])
 
-    owquotes = ["Cheers, love! The cavalry's here!","¡Apagando las luces!","Look out world, Tracer's here!","Nerf this!","Fire in the hole!","Die, die, die!","Justice rains from above!","I will be your shield!","All systems buzzing!","What is that melody?","Your guardian angel.","Do you even lift?","Gotcha something!","This... is my will."]
+    owquotes = ["Cheers, love! The cavalry's here!","¡Apagando las luces!","Look out world, Tracer's here!","Nerf this!","Fire in the hole!","Die, die, die!","Justice rains from above!","I will be your shield!","All systems buzzing!","What is that melody?","Your guardian angel.","Do you even lift?","Gotcha something!","This... is my will.","Old soldiers are hard to kill.","Clear skies, full hearts, can't lose.","Initiating the hack.","Your guardian angel.","It's in the refrigerator."]
 
     showGreeting()
     setPresence("inmenus_silent")
