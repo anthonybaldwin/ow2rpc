@@ -210,7 +210,7 @@ try:
                         print(c.fail + "Something unexpected went wrong! Please report this at git.io/owrpc or discord.gg/keErGbZ and say you hit point 3.")
                         print(c.info + "If you try and do whatever you were trying to do again, it should work. Hopefully. Sorry about that.")
 
-                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1] + '({largeImageText})',small_image=role[1],small_text='Playing as {role[0]}')
+                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=role[1],small_text='Playing as ' + role[0])
             else:
                 setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=smallImage,small_text=largeImageText)
 
