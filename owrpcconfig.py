@@ -69,5 +69,5 @@ class maps():
         "tank": ["Tank","https://i.imgur.com/QHyTbTb.png"],
         "heal": ["Support","https://i.imgur.com/aQTklud.png"],
         "dps": ["DPS","https://i.imgur.com/SwqWWHC.png"],
-        # "open": ["Open Queue", ""]
+        "open": ["Open Queue", "https://i.imgur.com/ngkat9U.png"]
     }
