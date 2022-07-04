@@ -39,9 +39,10 @@ try:
     # Move images to owrpcconfig.py?
 
     # TODO: Config, etc.
+    # Pretty positive this is in use for image manipulation: https://imageresizing.net/docs/v4/reference
     darkBgIcon = True
     transparent = False # this looks bad if darkBgIcon is also true
-    # Pretty positive this is in use for image manipulation: https://imageresizing.net/docs/v4/reference
+    grayscale = False
     largeImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=1024&mode=max&otf=y&quality=100&format=jpg&margin=15&bgcolor="
 
     if darkBgIcon: # continue to use light icon, and set dark background
@@ -52,6 +53,10 @@ try:
     # Set background to transparent if desired?
     if transparent:
         largeImage = largeImage.split("&bgcolor=", 1)[0]
+
+    # Idk, but it works
+    if grayscale:
+        largeImage += "&s.grayscale=true"
 
     smallImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=512&mode=max&otf=y&quality=100&format=jpg&margin=8&bgcolor=343e48"
 
