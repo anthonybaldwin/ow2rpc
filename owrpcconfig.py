@@ -66,7 +66,8 @@ class maps():
     }
 
     roles = {
-        "tank": ["Tank","https://i.imgur.com/9oJPhW5.png"],
-        "heal": ["Support","https://i.imgur.com/2ZpnJoZ.png"],
-        "dps": ["DPS","https://i.imgur.com/Fygq7HQ.png"],
+        "tank": ["Tank","https://i.imgur.com/QHyTbTb.png"],
+        "heal": ["Support","https://i.imgur.com/aQTklud.png"],
+        "dps": ["DPS","https://i.imgur.com/SwqWWHC.png"],
+        # "open": ["Open Queue", ""]
     }

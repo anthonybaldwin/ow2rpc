@@ -42,6 +42,7 @@ try:
     darkBgIcon = True
     transparent = False # this looks bad if darkBgIcon is also true
     largeImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=1024&mode=max&otf=y&quality=100&format=jpg&bgcolor="
+    #largeImage = "https://styles.redditmedia.com/t5_34fcr/styles/communityIcon_jfc4eclec1151.jpg"
 
     if darkBgIcon: # continue to use light icon, and set dark background
         largeImage += "343e48"
@@ -53,6 +54,7 @@ try:
         largeImage = largeImage.split("&bgcolor=", 1)[0]
 
     smallImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=512&mode=max&otf=y&quality=100&format=jpg&bgcolor=343e48"
+    #smallImage = "https://styles.redditmedia.com/t5_34fcr/styles/communityIcon_jfc4eclec1151.jpg"
 
     # Rank images (Rank tiers coming soon?)
     bronze = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-BronzeTier.png"
@@ -220,7 +222,7 @@ try:
                         print(c.fail + "Something unexpected went wrong! Please report this at git.io/owrpc or discord.gg/keErGbZ and say you hit point 3.")
                         print(c.info + "If you try and do whatever you were trying to do again, it should work. Hopefully. Sorry about that.")
 
-                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=role[1],small_text='Playing as ' + role[0])
+                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=role[1],small_text=role[0])
             else:
                 setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=smallImage,small_text=largeImageText)
 
