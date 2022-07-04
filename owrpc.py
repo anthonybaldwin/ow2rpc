@@ -36,11 +36,21 @@ try:
     dp.connect()
     
     # Image URLs in favor of dealing with assets
-    dark = False
-    if dark:
-        largeImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=1024&mode=max&otf=y&quality=100&format=jpg&bgcolor=343e48"
-    else:
-        largeImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_LTBKGD.png?w=1024&mode=max&otf=y&quality=100&format=jpg&bgcolor=white"
+    # Move images to owrpcconfig.py?
+
+    # TODO: Config, etc.
+    darkBgIcon = True
+    transparent = False # this looks bad if darkBgIcon is also true
+    largeImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=1024&mode=max&otf=y&quality=100&format=jpg&bgcolor="
+
+    if darkBgIcon: # continue to use light icon, and set dark background
+        largeImage += "343e48"
+    else: # change to dark icon, and set light background
+        largeImage = largeImage.replace("DKBKG","LTBKG") + "white"
+
+    # Set background to transparent if desired?
+    if transparent:
+        largeImage = largeImage.split("&bgcolor=", 1)[0]
 
     smallImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=512&mode=max&otf=y&quality=100&format=jpg&bgcolor=343e48"
 
