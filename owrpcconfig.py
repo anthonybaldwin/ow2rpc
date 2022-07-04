@@ -9,7 +9,6 @@ class configs():
 
     client = 993216825611518112
     ver = "2.0.0.beta"
-
 class maps():
     """
     Map-related configurations. Must be updated as new maps come out!
@@ -29,7 +28,7 @@ class maps():
     }
 
     # [Second] OW 2 Beta maps
-    # TODO: Add back all available maps so this works for OW1
+    # TODO: Add back all available maps so this works for OW 1
     standard = {
         # Control
         "busan": ["Busan","Control","https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/09/Overwatch_Busan.jpg/revision/latest/scale-to-width-down/1024?cb=20190412043201"],
@@ -56,12 +55,18 @@ class maps():
     }
 
     arcade = {
-        # "blackforest": ["Black Forest","Arcade","black-forest"],
-        # "castillo": ["Castillo","Arcade","castillo"],
-        # "antarctica": ["Ecopoint: Antarctica","Arcade","ecopoint-antarctica"],
-        # "necropolis": ["Necropolis","Arcade","necropolis"],
-        # "chateau": ["Château Guillard","Arcade","chateau"],
-        # "petra": ["Petra","Arcade","petra"],
-        # "ayutthaya": ["Ayutthaya","Arcade","ayutthaya"],
-        # "seasonal": ["Overwatch Event","Seasonal","overwatch"]
+        "blackforest": ["Black Forest","Arcade","black-forest"],
+        "castillo": ["Castillo","Arcade","castillo"],
+        "antarctica": ["Ecopoint: Antarctica","Arcade","ecopoint-antarctica"],
+        "necropolis": ["Necropolis","Arcade","necropolis"],
+        "chateau": ["Château Guillard","Arcade","chateau"],
+        "petra": ["Petra","Arcade","petra"],
+        "ayutthaya": ["Ayutthaya","Arcade","ayutthaya"],
+        "seasonal": ["Seasonal Event","Seasonal","overwatch"]
+    }
+
+    roles = {
+        "tank": ["Tank","tank"],
+        "heal": ["Support","heal"],
+        "dps": ["DPS","dps"],
     }

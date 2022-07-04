@@ -7,7 +7,6 @@ try:
     import time
     import sys
     import random
-    import os
 
     try:
         # Importing custom project-specific modules
@@ -20,15 +19,16 @@ try:
     # If imports didn't work...
     except Exception as e:
         # Warn the user that the modules can't be imported then exit with error code 1
-        print("[!] Error! Couldn't import a module. Did you download the dependencies?")
+        print("[!] Error! Couldn't import a module. Did you download the dependencies (requests and pypresence)?")
+        print("[!] Stack trace:" + str(e))
         sys.exit(1)
 
-    # If there is a file in this directory called ".nocol"
-    if os.path.exists(".nocol") == True:
-        # Import a different version of the prefixes module that removes the ANSI colours
+    try:
+        # Try to open .nocol, if we can't then it doesn't exist so we can import normal colours
+        f = open(".nocol","r")
+        f.close()
         from mansi import nocolours as c
-    else:
-        # Import the normal colours module
+    except:
         from mansi import colours as c
 
     # Initialise the Discord Presence using pypresence then connect to Discord
@@ -99,10 +99,10 @@ try:
         status.devmode = not status.devmode
 
         if status.devmode == True:
-            print(c.success + "Enabled development mode.")
+            print(c.success + "Enabled development mode. Be afraid!")
             clearPresence()
         else:
-            print(c.success + "Disabled development mode.")
+            print(c.success + "Disabled development mode... you can relax now.")
             clearPresence()
 
     def showGreeting():
@@ -110,6 +110,7 @@ try:
         onlver = requests.get("https://raw.githubusercontent.com/anthonybaldwin/ow2rpc/master/docs/VERSION.txt").text.rstrip()
         if x.ver != onlver:
             print(c.warn + "You're out-of-date! The latest version on GitHub is " + str(onlver) + " and you're on " + x.ver + ".")
+            print(c.warn + "Time to update! Clone the git repo again or redownload the files from git.io/owrpc.")
         else:
             print(c.success + "You're up-to-date! Thanks for using the latest version.")
         #print(c.info + "Questions? Comments? Feature requests? Head to https://git.io/owrpc!")
@@ -171,7 +172,11 @@ try:
                     if user < 1 or user > 5000:
                         raise ValueError
                     elif user < 1500:
-                        sr = [user,bronze]
+                        # From merging in: https://github.com/Synntix/owrpc
+                        if user < 500:
+                            sr = ["<500",bronze]
+                        else:
+                            sr = [user,bronze]
                     elif user < 2000:
                         sr = [user, silver]
                     elif user < 2500:
@@ -191,7 +196,23 @@ try:
 
                 setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=sr[1],small_text=str(sr[0]) + ' SR')
         else:
-            setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=smallImage,small_text=largeImageText)
+            if mode[2] == "standard" :
+                roles = buildList(m.roles)
+                print(c.info + "What is your role?")
+                print(c.info + "Your options are: " + roles)
+                user = input(c.ask)
+                role = ["",""]
+                while role == ["",""] :
+                    if user == "tank" or "heal" or "dps" :
+                        role[0] = m.roles[user][0] # Role name
+                        role[1] = m.roles[user][1] # Image key
+                    else:
+                        print(c.fail + "Something unexpected went wrong! Please report this at git.io/owrpc or discord.gg/keErGbZ and say you hit point 3.")
+                        print(c.info + "If you try and do whatever you were trying to do again, it should work. Hopefully. Sorry about that.")
+
+                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1] + '({largeImageText})',small_image=role[1],small_text='Playing as {role[0]}')
+            else:
+                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=smallImage,small_text=largeImageText)
 
     def setPresence(preset,details='',state='',large_image='',large_text='',small_image='',small_text=''):
         """
@@ -262,7 +283,7 @@ try:
 
         setPresence(None,details=options["details"],state=options["state"],large_image=options["large_image"],large_text=options["large_text"],small_image=options["small_image"],small_text=options["small_text"])
 
-    owquotes = ["Cheers, love! The cavalry's here!","¡Apagando las luces!","Old soldiers are hard to kill.","Clear skies, full hearts, can't lose.","Initiating the hack.","Your guardian angel.","It's in the refrigerator.","Look out world, Tracer's here!","Nerf this!","Fire in the hole!","Die, die, die!","Justice rains from above!","I will be your shield!","All systems buzzing!"]
+    owquotes = ["Cheers, love! The cavalry's here!","¡Apagando las luces!","Look out world, Tracer's here!","Nerf this!","Fire in the hole!","Die, die, die!","Justice rains from above!","I will be your shield!","All systems buzzing!","What is that melody?","Your guardian angel.","Do you even lift?","Gotcha something!","This... is my will."]
 
     showGreeting()
     setPresence("inmenus_silent")
@@ -326,5 +347,5 @@ try:
         pass
 except KeyboardInterrupt:
     print()
-    print(c.success + "Exiting...")
-    sys.exit(1)
+    print(c.fail + "Got your CTRL+C! Exiting...")
+    sys.exit(0)

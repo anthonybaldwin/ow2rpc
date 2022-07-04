@@ -1,13 +1,15 @@
 # owrpc
 
-### You might also like [splat2rpc](https://git.io/splat2) - a Discord Rich Presence client for Nintendo's Splatoon 2!
+### ~~You might also like [splat2rpc](https://git.io/splat2) - a Discord Rich Presence client for Nintendo's Splatoon 2!~~
 
-![version](https://img.shields.io/badge/version-1.0.3-yellow.svg)
+![version](https://img.shields.io/badge/version-1.1.3-yellow.svg)
 ![python-versions](https://img.shields.io/badge/python-3.5%20|%203.6%20|%203.7-critical.svg)
 ![GPL-license](https://img.shields.io/badge/license-GPLv3-green.svg)
 [![pypresence](https://img.shields.io/badge/using-pypresence-00bb88.svg?logo=discord&logoWidth=20)](https://github.com/qwertyquerty/pypresence)
 
-![owrpc Promo Hero](https://i.imgur.com/FfKMwXx.png)
+[![owrpc Promo Hero](https://i.imgur.com/FfKMwXx.png)](https://discord.gg/keErGbZ)
+
+[![Help Banner](https://i.imgur.com/G3ca1xE.png)](https://discord.gg/keErGbZ)
 
 ###### Overwatch + Discord Rich Presence = <3
 
@@ -25,6 +27,8 @@ Currently, Blizzard seems too focused on Battle.net as a platform (zzz) to imple
 
 - [x] [pypresence](https://github.com/qwertyquerty/pypresence) - install via pip using `pip install pypresence`
 
+- [x] [requests](https://2.python-requests.org/en/master/) - install via pip using `pip install requests`
+
 - [ ] A functioning brain
 
 - [x] Discord ["Show game activity" enabled](https://i.imgur.com/VBAU5Cg.png)
@@ -36,7 +40,7 @@ Currently, Blizzard seems too focused on Battle.net as a platform (zzz) to imple
 1. Clone the repo with `git clone https://github.com/maxicc/owrpc.git` or download the ZIP version from the top of this page.
 * *(sidenote: please do not change anything in the config file - you don't need your own Discord client ID or anything!)*
 2. Open up a Terminal window in the directory you cloned or downloaded this repo to.
-3. Run `pip install pypresence` if you don't already have it installed.
+3. Run `pip install pypresence` and `pip install requests` if you don't already have it installed.
 4. Make sure Discord is running, then run `python owrpc.py`. You should be greeted by the program!
 5. That's it, you're done! 🎉 Now, run `!help` to see what commands are available. Or just, you know, look below.
 6. *EXTRA STEP FOR WINDOWS USERS!* When testing this program on Windows, I noticed that the Windows Terminal doesn't, by default, display ANSI colours, instead it will just show the escape code (which makes the console display really ugly)! To get around this, create a file called `.nocol` in the same directory as `owrpc.py` - this will disable the colours. You could also use an alternate terminal - I know that [Terminus](https://eugeny.github.io/terminus/) works fine, as may others. Conversely, other platforms that struggle to display ANSI colours can disable them using the `.nocol` file.
