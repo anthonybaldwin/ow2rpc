@@ -36,7 +36,7 @@ try:
     dp.connect()
     
     # Image URLs in favor of dealing with assets
-    dark = True
+    dark = False
     if dark:
         largeImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=1024&mode=max&otf=y&quality=100&format=jpg&bgcolor=343e48"
     else:
@@ -53,7 +53,7 @@ try:
     masters = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-MasterTier.png"
     grandmaster = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-GrandmasterTier.png"
 
-    largeImageText = "Beta"
+    largeImageText = "PvP Beta"
 
     # Define the status class
     class status():
