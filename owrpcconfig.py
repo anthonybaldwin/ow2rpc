@@ -8,7 +8,7 @@ class configs():
     """
 
     client = 993216825611518112
-    ver = "2.0.0.beta"
+    ver = "2.0.0"
 class maps():
     """
     Map-related configurations. Must be updated as new maps come out!
@@ -21,14 +21,12 @@ class maps():
     "short-map-name": ["Full Map Name","type","discord-key"]
     """
     modes = {
-        #"competitive": ["Competitive","standard"],
+        "comp": ["Competitive","standard"],
         "quick": ["Quick Play","standard"],
-        #"arcade": ["Arcade","any"],
+        "arcade": ["Arcade","any"],
         "custom": ["Custom Game","any"]
     }
 
-    # [Second] OW 2 Beta maps
-    # TODO: Add back all available maps so this works for OW 1
     standard = {
         # Control
         "busan": ["Busan","Control","https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/09/Overwatch_Busan.jpg/revision/latest/scale-to-width-down/1024?cb=20190412043201"],
@@ -49,9 +47,12 @@ class maps():
         "kingsrow": ["King's Row","Hybrid","https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1b/King%27s_Row_concept.jpg/revision/latest/scale-to-width-down/1024?cb=20180520052818"],
         "midtown": ["Midtown","Hybrid","https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/4e/N18S6DCTDPG81613669123002.png/revision/latest/scale-to-width-down/1024?cb=20210221175110"],
         "paraiso": ["Paraíso","Hybrid","https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/90/Para%C3%ADso_pvp.jpg/revision/latest/scale-to-width-down/1024?cb=20220630025520"],
+        "numbani": ["Numbani","Hybrid","https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1b/Numbani_Loading_Screen.jpg/revision/latest/scale-to-width-down/1024?cb=20180520055541"],
+        "blizzardworld": ["Blizzard World","Hybrid","https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f8/Blizzard_World.jpg/revision/latest/scale-to-width-down/1024?cb=20190401012157"],
         # Push
         "colosseo": ["Colosseo","Push","https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1e/Blizzconline_rome_01.png/revision/latest/scale-to-width-down/1024?cb=20210220013006"],
-        "newqueenstreet": ["New Queen Street","Push","https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/91/Toronto.jpg/revision/latest/scale-to-width-down/1024?cb=20191101212447"]
+        "newqueenstreet": ["New Queen Street","Push","https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/91/Toronto.jpg/revision/latest/scale-to-width-down/1024?cb=20191101212447"],
+        "esperanca": ["Esperança","Push","https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f5/PortugalPush.jpg/revision/latest/scale-to-width-down/1024?cb=20220926215956"],
     }
 
     arcade = {
