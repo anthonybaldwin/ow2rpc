@@ -44,6 +44,7 @@ try:
     transparent = False # this looks bad if darkBgIcon is also true
     grayscale = False
     largeImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=1024&mode=max&otf=y&quality=100&format=jpg&margin=15&bgcolor="
+    #largeImage = "https://cdn.discordapp.com/app-icons/356875221078245376/d20f9f39f2eec584dcdbc7b206786124.webp?size=40&keep_aspect_ratio=false"
 
     if darkBgIcon: # continue to use light icon, and set dark background
         largeImage += "19191b" #discord gray #"343e48" #ow gray
@@ -60,16 +61,7 @@ try:
 
     smallImage = "https://images.westus.azure.gamespress.com/cdn/propressroom/Content/Artwork/Eva/BlizzardLive/artwork/2022/06/102219-f3a70bab/Overwatch2_Primary_DKBKGD.png?w=512&mode=max&otf=y&quality=100&format=jpg&margin=8&bgcolor=343e48"
 
-    # Rank images (Rank tiers coming soon?)
-    bronze = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-BronzeTier.png"
-    silver = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-SilverTier.png"
-    gold = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-GoldTier.png"
-    platinum = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png"
-    diamond = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-DiamondTier.png"
-    masters = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-MasterTier.png"
-    grandmaster = "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-GrandmasterTier.png"
-
-    largeImageText = "PvP Beta"
+    largeImageText = "Americas | 2.1.2.0.107360"
 
     # Define the status class
     class status():
@@ -154,7 +146,7 @@ try:
             maps = buildList(m.standard) + ", " + buildList(m.arcade)
         else:
             print(c.fail + "Something unexpected went wrong. Please report this and say you hit point 1.")
-
+        
         print(c.info + "What map are you playing on?")
         print(c.info + "Your options are: " + maps)
         user = input(c.ask)
@@ -178,39 +170,66 @@ try:
             else:
                 print(c.fail + "Something unexpected went wrong. Please report this and say you hit point 2.")
 
-        if mode[0] == "competitive":
-            print(c.info + "What is your skill rating (SR)?")
+        if mode[0] == "comp":
+            roles = buildList(m.roles)
+            print(c.info + "What is your role?")
+            print(c.info + "Your options are: " + roles)
             user = input(c.ask)
-            sr = [0,""]
-            while sr == [0,""]:
+            role = ["",""]
+            while role == ["",""] :
+                if user == "tank" or "heal" or "DPS":
+                    role[0] = m.roles[user][0] # Role name
+                    role[1] = m.roles[user][1] # Image key
+                else:
+                    print(c.fail + "Something unexpected went wrong! Please report this at git.io/owrpc or discord.gg/keErGbZ and say you hit point 3.")
+                    print(c.info + "If you try and do whatever you were trying to do again, it should work. Hopefully. Sorry about that.")
+                        
+            print(c.info + "What rank are you? (bronze, gold, silver, platinum, diamond, master, grandmaster, top500)")
+            user = input(c.ask)
+            rank = [0, ""]
+            while rank == [0, ""]:
                 try:
-                    user = int(user)
-                    if user < 1 or user > 5000:
+                    user = user.capitalize()
+                    if user.isnumeric():
                         raise ValueError
-                    elif user < 1500:
-                        # From merging in: https://github.com/Synntix/owrpc
-                        if user < 500:
-                            sr = ["<500",bronze]
-                        else:
-                            sr = [user,bronze]
-                    elif user < 2000:
-                        sr = [user, silver]
-                    elif user < 2500:
-                        sr = [user,gold]
-                    elif user < 3000:
-                        sr = [user,platinum]
-                    elif user < 3500:
-                        sr = [user,diamond]
-                    elif user < 4000:
-                        sr = [user,masters]
+                    elif user == "Bronze":
+                        rank = "bronze"
+                    elif user == "Silver":
+                        rank = "silver"
+                    elif user == "Gold":
+                        rank = "gold"
+                    elif user == "Platinum":
+                        rank = "platinum"
+                    elif user == "Diamond":
+                        rank = "diamond"
+                    elif user == "Master":
+                        rank = "masters"
+                    elif user == "Grandmaster":
+                        rank = "grandmaster"
                     else:
-                        sr = [user,grandmaster]
+                        raise ValueError
                 except Exception as e:
-                    print(c.fail + "The SR you entered is invalid, so I'm going to set your SR to Bronze. You probably belong there anyway.")
-                    sr = [-1,bronze]
+                    print(c.fail + "The rank you entered is invalid, so I'm going to set you to Bronze. You probably belong there anyway.")
+                    rank = "bronze"
                     print(str(e))
 
-                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=sr[1],small_text=str(sr[0]) + ' SR')
+            print(c.info + "What is your rank tier? (5-1)")
+            user = input(c.ask)
+            tier = ""
+            while tier == "":
+                try:
+                    t = int(user)
+                    if (t >= 1 and t <= 5):
+                        tier = user
+                    else:
+                        print(c.fail + "The tier you entered is not a number, so I'm going to set your tier to 5. You probably belong there anyway.")
+                        tier = 5
+                except ValueError as e:
+                     print(c.fail + "The tier you entered is not a number, so I'm going to set your tier to 5. You probably belong there anyway.")
+                     tier = 5
+                     print(str(e))
+
+                setPresence(None,details=mode[1] + ': In Game',state=map[2] + ' on ' + map[1],large_image=map[3],large_text=map[1],small_image=rank+tier,small_text=str(role[0] + " | " + rank.capitalize() + " " + tier))
         else:
             if mode[2] == "standard" :
                 roles = buildList(m.roles)
